@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://bfhhcq5f16bxq"]
+
+[ext_resource type="Material" uid="uid://3dp5ee7y3rb5" path="res://material/orange.tres" id="1_71nwg"]
+[ext_resource type="Material" uid="uid://momv8eo34ye8" path="res://material/teal.tres" id="2_5lhxk"]
+[ext_resource type="Material" uid="uid://dw5fjp8agnl3q" path="res://material/dark_teal.tres" id="3_oupjc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8oil5"]
+material = ExtResource("1_71nwg")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_71nwg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_s41ln"]
+material = ExtResource("2_5lhxk")
+
+[sub_resource type="BoxMesh" id="BoxMesh_04ptx"]
+material = ExtResource("3_oupjc")
+
+[sub_resource type="PrismMesh" id="PrismMesh_j10dw"]
+material = ExtResource("1_71nwg")
+left_to_right = 0.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5lhxk"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5)
+
+[node name="TempSet" type="Node3D"]
+
+[node name="OrangeCube" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_8oil5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OrangeCube"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OrangeCube/StaticBody3D"]
+shape = SubResource("BoxShape3D_71nwg")
+
+[node name="TealCube" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_s41ln")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TealCube"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TealCube/StaticBody3D"]
+shape = SubResource("BoxShape3D_71nwg")
+
+[node name="DarkTealCube" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_04ptx")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="DarkTealCube"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DarkTealCube/StaticBody3D"]
+shape = SubResource("BoxShape3D_71nwg")
+
+[node name="OrangeRamp" type="MeshInstance3D" parent="."]
+mesh = SubResource("PrismMesh_j10dw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="OrangeRamp"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OrangeRamp/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_5lhxk")
