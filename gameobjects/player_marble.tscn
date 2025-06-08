@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmw1dv44g1xju"]
+
+[ext_resource type="Script" uid="uid://ns1ave7yaayp" path="res://scripts/player_control.gd" id="1_wpegc"]
+[ext_resource type="Material" uid="uid://bht6f3ipqhrw8" path="res://material/temp_marble.tres" id="2_h47th"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_n4psk"]
+material = ExtResource("2_h47th")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ej4tk"]
+
+[node name="PlayerMarble" type="RigidBody3D"]
+script = ExtResource("1_wpegc")
+metadata/_custom_type_script = "uid://ns1ave7yaayp"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_n4psk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ej4tk")
