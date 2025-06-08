@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://82luglvsuvtu"]
+
+[ext_resource type="Script" uid="uid://b5v1flgc2u0fv" path="res://scripts/start_point.gd" id="1_wmn64"]
+
+[node name="StartPoint" type="Node3D"]
+script = ExtResource("1_wmn64")
+
+[node name="Label3D" type="Label3D" parent="."]
+pixel_size = 0.02
+billboard = 1
+text = "Start"
