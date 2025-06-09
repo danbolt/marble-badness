@@ -39,7 +39,7 @@ fov = 75.0
 size = 12.0
 frustum_offset = Vector2(0, 0)
 near = 0.05
-far = 100.00000000000001
+far = 100.0
 metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
 [node name="Gameplay" type="Node3D"]
