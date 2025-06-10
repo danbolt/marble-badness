@@ -30,9 +30,8 @@ func setup_level(level_to_setup: PackedScene) -> void:
 	var new_level: Node = level_to_setup.instantiate()
 	add_child(new_level)
 	level = new_level
-
-func _ready() -> void:
-	setup_level(preload("res://levels/test_level.tscn"))
 	
 	setup_camera()
-	set_player_to_starting_position(player_marble, 1)
+	set_player_to_starting_position(player_marble, 0)
+
+	

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MarbleBadness"
-run/main_scene="uid://byxr54isu5tmy"
+run/main_scene="uid://da2yf2po1evg"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
