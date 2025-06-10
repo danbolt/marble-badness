@@ -4,6 +4,8 @@ class_name PlayerControl extends RigidBody3D
 
 @export var max_velocity: Vector3 = Vector3(3.0, 999.0, 3.0)
 
+@export var jump_force: float = 5.0
+
 func get_input_velocity(delta: float) -> Vector3:
 	var current_viewport := get_viewport()
 	if current_viewport == null:
@@ -37,4 +39,4 @@ func _physics_process(delta: float) -> void:
 	constant_force = input_velocity
 	
 	if Input.is_action_just_pressed("ui_accept"):
-		apply_impulse(Vector3.UP * 10)
+		apply_impulse(Vector3.UP * jump_force)

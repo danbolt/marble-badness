@@ -12,9 +12,12 @@ material = ExtResource("2_h47th")
 [sub_resource type="SphereShape3D" id="SphereShape3D_ej4tk"]
 
 [node name="PlayerMarble" type="RigidBody3D"]
+collision_layer = 3
 physics_material_override = SubResource("PhysicsMaterial_h47th")
 gravity_scale = 2.0
 script = ExtResource("1_wpegc")
+input_strength = 400.0
+max_velocity = Vector3(4, 999, 4)
 metadata/_custom_type_script = "uid://ns1ave7yaayp"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
