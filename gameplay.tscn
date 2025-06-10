@@ -51,6 +51,7 @@ priority = 10
 follow_mode = 2
 look_at_mode = 2
 tween_resource = SubResource("Resource_3n40r")
+tween_on_load = false
 camera_3d_resource = SubResource("Resource_45aep")
 follow_offset = Vector3(-8, 10, 8)
 dead_zone_width = 0.2
