@@ -28,5 +28,3 @@ func level_transition(level_name: String) -> void:
 	
 func _ready() -> void:
 	load_level("test_level")
-	clear_current_level()
-	load_level("test_level")

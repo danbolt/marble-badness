@@ -11,7 +11,7 @@ func on_player_entered(_intruder: Node3D) -> void:
 		push_warning("No level key found for %s" % get_path())
 		return
 	
-	get_tree().call_group("listen_for_level_change", "level_transition", level_key)
+	get_tree().call_group_flags(SceneTree.GROUP_CALL_DEFERRED, "listen_for_level_change", "level_transition", level_key)
 	set_deferred("monitoring", false)
 
 func _ready() -> void:
