@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://qedu0pkvssdc"]
+[gd_scene load_steps=7 format=3 uid="uid://qedu0pkvssdc"]
 
 [ext_resource type="PackedScene" uid="uid://82luglvsuvtu" path="res://gameobjects/start_point.tscn" id="1_x25rp"]
 [ext_resource type="MeshLibrary" uid="uid://d25weyjedtp6u" path="res://meshlibrary/temp/temp.tres" id="2_gmgay"]
+[ext_resource type="PackedScene" uid="uid://dy6ptr521ioq3" path="res://gameobjects/exit.tscn" id="3_gmgay"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kbk8u"]
 sky_top_color = Color(0.264511, 0.501688, 0.428591, 1)
@@ -33,6 +34,8 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, -11, 0)
 
-[node name="Node" type="Node" parent="."]
+[node name="StartPoint" parent="." instance=ExtResource("1_x25rp")]
 
-[node name="StartPoint" parent="Node" instance=ExtResource("1_x25rp")]
+[node name="Exit" parent="." instance=ExtResource("3_gmgay")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -4, 12.5)
+level_key = "test_level"

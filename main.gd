@@ -3,6 +3,10 @@ class_name Main extends Node
 var current_stage: Gameplay = null
 @onready var gameplay_prefab: PackedScene = preload("res://gameplay.tscn")
 
+var has_current_stage: bool:
+	get:
+		return current_stage != null
+
 func clear_current_level() -> void:
 	assert(current_stage != null, "Trying to clear a stage when none is currently loaded")
 	current_stage.queue_free()
@@ -16,6 +20,11 @@ func load_level(level_name: String) -> void:
 	current_stage = gameplay_prefab.instantiate()
 	add_child(current_stage)
 	current_stage.setup_level(level_to_load)
+	
+func level_transition(level_name: String) -> void:
+	if has_current_stage:
+		clear_current_level()
+	load_level(level_name)
 	
 func _ready() -> void:
 	load_level("test_level")

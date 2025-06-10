@@ -68,6 +68,11 @@ jump={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Physical World"
+3d_physics/layer_2="Player"
+
 [physics]
 
 common/physics_ticks_per_second=20
