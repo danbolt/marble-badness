@@ -35,3 +35,6 @@ func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
 func _physics_process(delta: float) -> void:
 	var input_velocity: Vector3 = get_input_velocity(delta)
 	constant_force = input_velocity
+	
+	if Input.is_action_just_pressed("ui_accept"):
+		apply_impulse(Vector3.UP * 10)

@@ -13,6 +13,7 @@ material = ExtResource("2_h47th")
 
 [node name="PlayerMarble" type="RigidBody3D"]
 physics_material_override = SubResource("PhysicsMaterial_h47th")
+gravity_scale = 4.0
 script = ExtResource("1_wpegc")
 metadata/_custom_type_script = "uid://ns1ave7yaayp"
 
