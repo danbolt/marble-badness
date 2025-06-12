@@ -27,6 +27,7 @@ shadow_enabled = true
 environment = SubResource("Environment_ej4tk")
 
 [node name="GridMap" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26, 0)
 mesh_library = ExtResource("2_gmgay")
 cell_size = Vector3(1, 1, 1)
 data = {
@@ -35,7 +36,8 @@ data = {
 metadata/_editor_floor_ = Vector3(0, -11, 0)
 
 [node name="StartPoint" parent="." instance=ExtResource("1_x25rp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26, 0)
 
 [node name="Exit" parent="." instance=ExtResource("3_gmgay")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, -8, 12.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 18, 12.5)
 level_key = "level_2"

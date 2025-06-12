@@ -35,6 +35,10 @@ func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
 	linear_velocity = linear_velocity.clamp(-max_velocity, max_velocity)
 
 func _physics_process(delta: float) -> void:
+	if global_position.y < 0.0:
+		get_tree().call_group_flags(SceneTree.GROUP_CALL_DEFERRED, "listen_for_level_change", "reset_current_level")
+		return
+	
 	var input_velocity: Vector3 = get_input_velocity(delta)
 	constant_force = input_velocity
 	
