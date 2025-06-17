@@ -42,6 +42,4 @@ func show_announcement(text: String) -> void:
 	new_announcement.reveal_text(text)
 	
 func _ready() -> void:
-	load_level("level_2")
-	
-	show_announcement("a special signal")
+	load_level("test_level")

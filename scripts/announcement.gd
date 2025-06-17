@@ -11,7 +11,7 @@ var text: String:
 func reveal_text(text_to_show: String) -> void:
 	text = text_to_show
 	visible = true
-	wait_then_hide.call_deferred(text_to_show.length() * 0.3)
+	wait_then_hide.call_deferred(clamp(text_to_show.length() * 0.1, 2.0, 6.0))
 	
 func wait_then_hide(duration: float) -> void:
 	var wait_timer := get_tree().create_timer(duration, false, true)

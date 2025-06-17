@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://qedu0pkvssdc"]
+[gd_scene load_steps=9 format=3 uid="uid://qedu0pkvssdc"]
 
 [ext_resource type="PackedScene" uid="uid://82luglvsuvtu" path="res://gameobjects/start_point.tscn" id="1_x25rp"]
 [ext_resource type="MeshLibrary" uid="uid://d25weyjedtp6u" path="res://meshlibrary/temp/temp.tres" id="2_gmgay"]
 [ext_resource type="PackedScene" uid="uid://dy6ptr521ioq3" path="res://gameobjects/exit.tscn" id="3_gmgay"]
+[ext_resource type="Script" uid="uid://378bq2sfdon2" path="res://scripts/announce_zone.gd" id="4_w7r7j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kbk8u"]
 sky_top_color = Color(0.264511, 0.501688, 0.428591, 1)
@@ -16,6 +17,9 @@ sky_material = SubResource("ProceduralSkyMaterial_kbk8u")
 [sub_resource type="Environment" id="Environment_ej4tk"]
 background_mode = 2
 sky = SubResource("Sky_n4psk")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o6mel"]
+size = Vector3(5.958435, 2.610321, 3.9620361)
 
 [node name="TestLevel" type="Node3D"]
 
@@ -41,3 +45,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26, 0)
 [node name="Exit" parent="." instance=ExtResource("3_gmgay")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 18, 12.5)
 level_key = "level_2"
+
+[node name="AnnounceZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22, 12)
+script = ExtResource("4_w7r7j")
+text_to_show = "o traveler
+weary from a long journey
+
+unrelent!
+venture forth!"
+metadata/_custom_type_script = "uid://378bq2sfdon2"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnnounceZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.811676, 0.22111511, 0.43951416)
+shape = SubResource("BoxShape3D_o6mel")
