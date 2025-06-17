@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://cm6eop3te3w28" path="res://main.gd" id="1_ig7tw"]
 
-[node name="Main" type="Node" groups=["listen_for_level_change"]]
+[node name="Main" type="Node" groups=["listen_for_announce", "listen_for_level_change"]]
 script = ExtResource("1_ig7tw")
