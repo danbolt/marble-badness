@@ -3,6 +3,8 @@ class_name Main extends Node
 var current_stage: Gameplay = null
 @onready var gameplay_prefab: PackedScene = preload("res://gameplay.tscn")
 
+@onready var announcement_prefab: PackedScene = preload("res://gameobjects/main_announcement.tscn")
+
 var current_stage_key: String = ""
 
 var has_current_stage: bool:
@@ -34,5 +36,12 @@ func level_transition(level_name: String) -> void:
 		clear_current_level()
 	load_level(level_name)
 	
+func show_announcement(text: String) -> void:
+	var new_announcement: Announcement = announcement_prefab.instantiate()
+	add_child(new_announcement)
+	new_announcement.reveal_text(text)
+	
 func _ready() -> void:
 	load_level("level_2")
+	
+	show_announcement("a special signal")

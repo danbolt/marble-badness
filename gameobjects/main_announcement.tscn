@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmh5tiwu6fxhe"]
+
+[ext_resource type="Script" uid="uid://beio14wnj5maj" path="res://scripts/announcement.gd" id="1_3o0jk"]
+[ext_resource type="Theme" uid="uid://doevfhxpnkj07" path="res://theme/main_announcement.tres" id="2_jyffs"]
+
+[node name="MainAnnouncement" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3o0jk")
+metadata/_custom_type_script = "uid://beio14wnj5maj"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -11.5
+offset_right = 35.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_jyffs")
+text = "Test Text"
+horizontal_alignment = 1
+vertical_alignment = 1
