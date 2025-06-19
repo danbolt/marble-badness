@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://cid1ula27hvri"]
+[gd_scene load_steps=41 format=4 uid="uid://cid1ula27hvri"]
 
 [ext_resource type="PackedScene" uid="uid://82luglvsuvtu" path="res://gameobjects/start_point.tscn" id="2_v5uil"]
 [ext_resource type="PackedScene" uid="uid://dy6ptr521ioq3" path="res://gameobjects/exit.tscn" id="3_5722l"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="4_ep78u"]
 [ext_resource type="Material" uid="uid://dacyqr5h8oa3r" path="res://maps/textures/blue_surface.tres" id="5_ilhis"]
 [ext_resource type="Material" uid="uid://ba72mfw72gom0" path="res://maps/textures/lavender_marble.tres" id="6_ep78u"]
+[ext_resource type="PackedScene" uid="uid://cqboodeswqvc" path="res://PostProcess.tscn" id="7_ep78u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kbk8u"]
 sky_top_color = Color(0.264511, 0.501688, 0.428591, 1)
@@ -249,3 +250,6 @@ shape = SubResource("ConvexPolygonShape3D_6dcgf")
 
 [node name="entity_0_brush_27_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
 shape = SubResource("ConvexPolygonShape3D_ubuva")
+
+[node name="Node3D" parent="." instance=ExtResource("7_ep78u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.931034, 0, 1.8260424)
