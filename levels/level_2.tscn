@@ -1,12 +1,12 @@
-[gd_scene load_steps=42 format=4 uid="uid://cid1ula27hvri"]
+[gd_scene load_steps=43 format=4 uid="uid://cid1ula27hvri"]
 
+[ext_resource type="Script" uid="uid://cr8rxrjccmep1" path="res://Shaders/post_process_shader.gd" id="1_ep78u"]
 [ext_resource type="PackedScene" uid="uid://82luglvsuvtu" path="res://gameobjects/start_point.tscn" id="2_v5uil"]
 [ext_resource type="PackedScene" uid="uid://dy6ptr521ioq3" path="res://gameobjects/exit.tscn" id="3_5722l"]
 [ext_resource type="Script" uid="uid://cmmoi4fp1hbpl" path="res://addons/func_godot/src/map/func_godot_map.gd" id="3_ilhis"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="4_ep78u"]
 [ext_resource type="Material" uid="uid://dacyqr5h8oa3r" path="res://maps/textures/blue_surface.tres" id="5_ilhis"]
 [ext_resource type="Material" uid="uid://ba72mfw72gom0" path="res://maps/textures/lavender_marble.tres" id="6_ep78u"]
-[ext_resource type="Script" uid="uid://378bq2sfdon2" path="res://scripts/announce_zone.gd" id="7_ep78u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kbk8u"]
 sky_top_color = Color(0.264511, 0.501688, 0.428591, 1)
@@ -20,6 +20,21 @@ sky_material = SubResource("ProceduralSkyMaterial_kbk8u")
 [sub_resource type="Environment" id="Environment_ej4tk"]
 background_mode = 2
 sky = SubResource("Sky_n4psk")
+
+[sub_resource type="CompositorEffect" id="CompositorEffect_ep78u"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = true
+effect_callback_type = 4
+needs_motion_vectors = false
+needs_normal_roughness = false
+script = ExtResource("1_ep78u")
+shader_code = "float gray = color.r * 0.2125 + color.g * 0.7154 + color.b * 0.0721;
+color.rgb = vec3(gray);"
+metadata/_custom_type_script = "uid://cr8rxrjccmep1"
+
+[sub_resource type="Compositor" id="Compositor_at1ld"]
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_ep78u")])
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ilhis"]
 _surfaces = [{
@@ -136,9 +151,6 @@ points = PackedVector3Array(-11.999999, 17.5, -0.5, -12, 16.5, -0.5, -10, 16.5, 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ubuva"]
 points = PackedVector3Array(-6, 38.5, 2, -6, 17, 2, 3, 17, 2, 3, 38.5, 2, -6, 38.5, 3, -6, 17, 3, 3, 17, 3, 3, 38.5, 3)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_dfjjl"]
-size = Vector3(1.4518795, 2.610321, 3.9620361)
-
 [node name="Level2" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -147,6 +159,7 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ej4tk")
+compositor = SubResource("Compositor_at1ld")
 
 [node name="StartPoint" parent="." instance=ExtResource("2_v5uil")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38, 0)
@@ -253,13 +266,3 @@ shape = SubResource("ConvexPolygonShape3D_6dcgf")
 
 [node name="entity_0_brush_27_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
 shape = SubResource("ConvexPolygonShape3D_ubuva")
-
-[node name="AnnounceZone" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.9185505, 22, 0.59319234)
-script = ExtResource("7_ep78u")
-text_to_show = "have no fear"
-metadata/_custom_type_script = "uid://378bq2sfdon2"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AnnounceZone"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.026892662, -3, 0)
-shape = SubResource("BoxShape3D_dfjjl")
