@@ -1,12 +1,12 @@
-[gd_scene load_steps=41 format=4 uid="uid://cid1ula27hvri"]
+[gd_scene load_steps=43 format=4 uid="uid://cid1ula27hvri"]
 
+[ext_resource type="Script" uid="uid://cr8rxrjccmep1" path="res://Shaders/post_process_shader.gd" id="1_ep78u"]
 [ext_resource type="PackedScene" uid="uid://82luglvsuvtu" path="res://gameobjects/start_point.tscn" id="2_v5uil"]
 [ext_resource type="PackedScene" uid="uid://dy6ptr521ioq3" path="res://gameobjects/exit.tscn" id="3_5722l"]
 [ext_resource type="Script" uid="uid://cmmoi4fp1hbpl" path="res://addons/func_godot/src/map/func_godot_map.gd" id="3_ilhis"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="4_ep78u"]
 [ext_resource type="Material" uid="uid://dacyqr5h8oa3r" path="res://maps/textures/blue_surface.tres" id="5_ilhis"]
 [ext_resource type="Material" uid="uid://ba72mfw72gom0" path="res://maps/textures/lavender_marble.tres" id="6_ep78u"]
-[ext_resource type="PackedScene" uid="uid://cqboodeswqvc" path="res://PostProcess.tscn" id="7_ep78u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kbk8u"]
 sky_top_color = Color(0.264511, 0.501688, 0.428591, 1)
@@ -20,6 +20,20 @@ sky_material = SubResource("ProceduralSkyMaterial_kbk8u")
 [sub_resource type="Environment" id="Environment_ej4tk"]
 background_mode = 2
 sky = SubResource("Sky_n4psk")
+
+[sub_resource type="CompositorEffect" id="CompositorEffect_ep78u"]
+resource_local_to_scene = false
+resource_name = ""
+enabled = true
+effect_callback_type = 4
+needs_motion_vectors = false
+needs_normal_roughness = false
+script = ExtResource("1_ep78u")
+shader_code = ""
+metadata/_custom_type_script = "uid://cr8rxrjccmep1"
+
+[sub_resource type="Compositor" id="Compositor_at1ld"]
+compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_ep78u")])
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ilhis"]
 _surfaces = [{
@@ -144,6 +158,7 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ej4tk")
+compositor = SubResource("Compositor_at1ld")
 
 [node name="StartPoint" parent="." instance=ExtResource("2_v5uil")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38, 0)
@@ -250,6 +265,3 @@ shape = SubResource("ConvexPolygonShape3D_6dcgf")
 
 [node name="entity_0_brush_27_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
 shape = SubResource("ConvexPolygonShape3D_ubuva")
-
-[node name="Node3D" parent="." instance=ExtResource("7_ep78u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.931034, 0, 1.8260424)
