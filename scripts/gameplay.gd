@@ -4,6 +4,8 @@ class_name Gameplay extends Node3D
 
 @onready var gameplay_camera: PhantomCamera3D = $GameplayCamera
 
+@onready var post_process_component: Node3D = $PostProcessScene
+
 # This is assigned on level load
 var level: Node = null
 
@@ -25,6 +27,8 @@ func set_player_to_starting_position(player: PlayerControl, index: int = 0) -> v
 func setup_camera() -> void:
 	gameplay_camera.set_follow_target(player_marble)
 	gameplay_camera.set_look_at_target(player_marble)
+	gameplay_camera.add_child(post_process_component)
+	
 
 func setup_level(level_to_setup: PackedScene) -> void:
 	var new_level: Node = level_to_setup.instantiate()
