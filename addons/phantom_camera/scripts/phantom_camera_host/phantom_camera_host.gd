@@ -838,6 +838,10 @@ func _camera_3d_resource_changed() -> void:
 				Engine.get_singleton(&"EditorInterface").get_inspector().property_edited.disconnect(_camera_3d_edited)
 
 func _camera_3d_edited(value: String) -> void:
+	## HACK: (Daniel), PhantomCamera stomps our compositor values by default; boo!
+	if (value == "compositor"):
+		return
+	
 	if not Engine.get_singleton(&"EditorInterface").get_inspector().get_edited_object() == camera_3d: return
 	camera_3d.set(value, _active_pcam_3d.camera_3d_resource.get(value))
 	push_warning("Camera3D properties are being overridden by ", _active_pcam_3d.name, "'s Camera3DResource")
