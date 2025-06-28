@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://cid1ula27hvri"]
+[gd_scene load_steps=46 format=4 uid="uid://cid1ula27hvri"]
 
 [ext_resource type="Script" uid="uid://cr8rxrjccmep1" path="res://Shaders/post_process_shader.gd" id="1_ep78u"]
 [ext_resource type="PackedScene" uid="uid://82luglvsuvtu" path="res://gameobjects/start_point.tscn" id="2_v5uil"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="4_ep78u"]
 [ext_resource type="Material" uid="uid://dacyqr5h8oa3r" path="res://maps/textures/blue_surface.tres" id="5_ilhis"]
 [ext_resource type="Material" uid="uid://ba72mfw72gom0" path="res://maps/textures/lavender_marble.tres" id="6_ep78u"]
+[ext_resource type="Shader" uid="uid://ddgqql188pqy6" path="res://Shaders/3DPostProcess.gdshader" id="8_dfjjl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kbk8u"]
 sky_top_color = Color(0.264511, 0.501688, 0.428591, 1)
@@ -30,7 +31,8 @@ needs_motion_vectors = false
 needs_normal_roughness = false
 script = ExtResource("1_ep78u")
 shader_code = "float gray = color.r * 0.2125 + color.g * 0.7154 + color.b * 0.0721;
-color.rgb = vec3(gray);"
+vec3 n = normal.rgb;
+color.rgb = vec3(1.);"
 metadata/_custom_type_script = "uid://cr8rxrjccmep1"
 
 [sub_resource type="Compositor" id="Compositor_at1ld"]
@@ -151,6 +153,25 @@ points = PackedVector3Array(-11.999999, 17.5, -0.5, -12, 16.5, -0.5, -10, 16.5, 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ubuva"]
 points = PackedVector3Array(-6, 38.5, 2, -6, 17, 2, 3, 17, 2, 3, 38.5, 2, -6, 38.5, 3, -6, 17, 3, 3, 17, 3, 3, 38.5, 3)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dfjjl"]
+render_priority = 0
+shader = ExtResource("8_dfjjl")
+shader_parameter/colors_per_channel = 8.0
+shader_parameter/normal_outline_strength = 1.0000000149012
+shader_parameter/sensitivity = 10.9999997217
+shader_parameter/normal_sensitivity = 0.1250000059375
+shader_parameter/normal_horizontal_vertical_sensitivity = 0.30000001425
+shader_parameter/depth_range = 500.9000074491099
+shader_parameter/thickness = 0.20000000298024
+shader_parameter/normalSampleThickness = 0.10000000149012
+shader_parameter/step_threshold = 0.00999999977648
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_sd18g"]
+material = SubResource("ShaderMaterial_dfjjl")
+flip_faces = true
+size = Vector2(2, 2)
+
 [node name="Level2" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -266,3 +287,8 @@ shape = SubResource("ConvexPolygonShape3D_6dcgf")
 
 [node name="entity_0_brush_27_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
 shape = SubResource("ConvexPolygonShape3D_ubuva")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(68.63126, 0, 0, 0, 12.795905, 0, 0, 0, 1, -16.740112, 20.436768, -8.847046)
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_sd18g")

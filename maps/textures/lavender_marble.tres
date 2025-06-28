@@ -1,8 +1,5 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ba72mfw72gom0"]
-
-[ext_resource type="Texture2D" uid="uid://nd74dneg5x2w" path="res://maps/textures/lavender_marble.png" id="1_0eoka"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ba72mfw72gom0"]
 
 [resource]
-albedo_texture = ExtResource("1_0eoka")
 metallic_specular = 0.0
 texture_filter = 2
