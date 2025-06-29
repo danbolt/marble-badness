@@ -26,21 +26,11 @@ compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_fbud
 
 [sub_resource type="Resource" id="Resource_3n40r"]
 script = ExtResource("7_2ihbs")
-duration = 1.0
-transition = 0
-ease = 2
 
 [sub_resource type="Resource" id="Resource_45aep"]
 script = ExtResource("8_1qy1k")
-keep_aspect = 1
-cull_mask = 1048575
-h_offset = 0.0
-v_offset = 0.0
 projection = 1
-fov = 75.0
 size = 12.0
-frustum_offset = Vector2(0, 0)
-near = 0.05
 far = 100.0
 metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
@@ -49,13 +39,13 @@ render_priority = 0
 shader = ExtResource("7_fbudy")
 shader_parameter/colors_per_channel = 8.0
 shader_parameter/normal_outline_strength = 3.4000000506640804
-shader_parameter/sensitivity = 99.99999747000001
+shader_parameter/sensitivity = 99.99999747
 shader_parameter/normal_sensitivity = 0.50000002375
 shader_parameter/normal_horizontal_vertical_sensitivity = 0.30000001425
 shader_parameter/depth_range = 487.1000072434733
 shader_parameter/thickness = 0.20000000298024
-shader_parameter/normalSampleThickness = 0.19999999552960002
-shader_parameter/step_threshold = 0.37999999150624003
+shader_parameter/normalSampleThickness = 0.1999999955296
+shader_parameter/step_threshold = 0.37999999150624
 shader_parameter/outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_2ihbs"]

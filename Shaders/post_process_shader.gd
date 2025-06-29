@@ -139,7 +139,7 @@ func _render_callback(p_effect_callback_type, p_render_data):
 			for view in range(view_count):
 				# Get the RID for our color image, we will be reading from and writing to it.
 				var input_image = render_scene_buffers.get_color_layer(view)
-				var depth_input = render_scene_buffers.get_depth_layer(view)
+				var _depth_input = render_scene_buffers.get_depth_layer(view)
 				
 				# Create a uniform set.
 				# This will be cached; the cache will be cleared if our viewport's configuration is changed.
