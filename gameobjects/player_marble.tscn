@@ -12,7 +12,7 @@ material = ExtResource("2_h47th")
 [sub_resource type="SphereShape3D" id="SphereShape3D_ej4tk"]
 
 [node name="PlayerMarble" type="RigidBody3D"]
-collision_layer = 3
+collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_h47th")
 gravity_scale = 2.0
 script = ExtResource("1_wpegc")

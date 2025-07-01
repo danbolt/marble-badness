@@ -5,6 +5,9 @@ var current_stage: Gameplay = null
 
 @onready var announcement_prefab: PackedScene = preload("res://gameobjects/main_announcement.tscn")
 
+@onready var available_jump_display_prefab: PackedScene = preload("res://gameobjects/available_jump_display.tscn")
+var available_jump_display: AvailableJumpDisplay = null
+
 var current_stage_key: String = ""
 
 var has_current_stage: bool:
@@ -21,6 +24,10 @@ func clear_current_level() -> void:
 	remove_child(current_stage)
 	current_stage = null
 	current_stage_key = ""
+	
+	available_jump_display.queue_free()
+	remove_child(available_jump_display)
+	available_jump_display = null
 
 func load_level(level_name: String) -> void:
 	assert(current_stage == null, "Trying to load a new level when we already have one loaded")
@@ -30,6 +37,9 @@ func load_level(level_name: String) -> void:
 	add_child(current_stage)
 	current_stage.setup_level(level_to_load)
 	current_stage_key = level_name
+	
+	available_jump_display = available_jump_display_prefab.instantiate()
+	add_child(available_jump_display)
 	
 func level_transition(level_name: String) -> void:
 	if has_current_stage:
@@ -43,3 +53,7 @@ func show_announcement(text: String) -> void:
 	
 func _ready() -> void:
 	load_level("test_level")
+
+func _process(_delta: float) -> void:
+	if has_current_stage and available_jump_display != null:
+		available_jump_display.refresh_jump_display(current_stage.jumps_available, current_stage.max_jumps_available)

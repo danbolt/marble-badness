@@ -4,6 +4,14 @@ class_name Gameplay extends Node3D
 
 @onready var gameplay_camera: PhantomCamera3D = $GameplayCamera
 
+var jumps_available: int:
+	get:
+		return player_marble.current_number_of_jumps_available
+		
+var max_jumps_available: int:
+	get:
+		return player_marble.max_number_of_jumps
+
 # This is assigned on level load
 var level: Node = null
 
