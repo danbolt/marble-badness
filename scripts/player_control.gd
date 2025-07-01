@@ -5,8 +5,11 @@ class_name PlayerControl extends RigidBody3D
 
 @export var max_velocity: Vector3 = Vector3(3.0, 999.0, 3.0)
 
-@export var initial_jump_force: float = 5.0
-@export var extra_jump_force: float = 1
+@export var initial_jump_force: float = 15.0
+@export var extra_jump_force: float = 7.0
+
+@export var max_number_of_jumps: int = 3
+@export var current_number_of_jumps_available: int = max_number_of_jumps
 
 var floor_check_shape: Shape3D = null
 # TODO: Daniel, we may need to make this dynamic if our mesh position changes
@@ -62,12 +65,19 @@ func _physics_process(delta: float) -> void:
 	var input_velocity: Vector3 = get_input_velocity(delta)
 	constant_force = input_velocity
 	
-	if Input.is_action_just_pressed("ui_accept"):
-		var currently_on_the_floor := currently_on_floor()
-		var jump_force: float = (initial_jump_force if currently_on_the_floor else extra_jump_force)
+	var on_floor := currently_on_floor()
+	if on_floor:
+		current_number_of_jumps_available = max_number_of_jumps
+	
+	if Input.is_action_just_pressed("ui_accept") and (current_number_of_jumps_available > 0):
+		var jump_force: float = (initial_jump_force if on_floor else extra_jump_force)
 		
 		apply_impulse(Vector3.UP * jump_force)
+		
+		current_number_of_jumps_available = max(current_number_of_jumps_available - 1, 0)
 
 func _ready() -> void:
 	floor_check_shape = SphereShape3D.new()
 	floor_check_shape.radius = 0.125
+	
+	current_number_of_jumps_available = max_number_of_jumps
