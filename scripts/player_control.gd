@@ -1,10 +1,16 @@
 class_name PlayerControl extends RigidBody3D
 
+
 @export var input_strength: float = 200.0
 
 @export var max_velocity: Vector3 = Vector3(3.0, 999.0, 3.0)
 
-@export var jump_force: float = 5.0
+@export var initial_jump_force: float = 5.0
+@export var extra_jump_force: float = 1
+
+var floor_check_shape: Shape3D = null
+# TODO: Daniel, we may need to make this dynamic if our mesh position changes
+const FLOOR_CHECK_POSITION: Vector3 = Vector3(0.0, -0.5, 0.0)
 
 func get_input_velocity(delta: float) -> Vector3:
 	var current_viewport := get_viewport()
@@ -34,6 +40,20 @@ func get_input_velocity(delta: float) -> Vector3:
 func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
 	linear_velocity = linear_velocity.clamp(-max_velocity, max_velocity)
 
+func currently_on_floor() -> bool:
+	if not is_inside_tree():
+		return false
+		
+	var query_params := PhysicsShapeQueryParameters3D.new()
+	query_params.collision_mask = 1 # Only check the physical world
+	query_params.shape = floor_check_shape
+	query_params.transform = Transform3D(Basis(), global_position + FLOOR_CHECK_POSITION)
+	
+	var space_state := get_world_3d().direct_space_state
+	var results := space_state.intersect_shape(query_params, 1)
+	
+	return results.size() > 0
+
 func _physics_process(delta: float) -> void:
 	if global_position.y < 0.0:
 		get_tree().call_group_flags(SceneTree.GROUP_CALL_DEFERRED, "listen_for_level_change", "reset_current_level")
@@ -43,4 +63,11 @@ func _physics_process(delta: float) -> void:
 	constant_force = input_velocity
 	
 	if Input.is_action_just_pressed("ui_accept"):
+		var currently_on_the_floor := currently_on_floor()
+		var jump_force: float = (initial_jump_force if currently_on_the_floor else extra_jump_force)
+		
 		apply_impulse(Vector3.UP * jump_force)
+
+func _ready() -> void:
+	floor_check_shape = SphereShape3D.new()
+	floor_check_shape.radius = 0.125
